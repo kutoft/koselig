@@ -16,31 +16,41 @@ const Navbar = class extends React.Component {
   }
 
   componentDidMount = () => {
-    window.addEventListener('scroll', this.handleScrolling);
+    if(window.location.pathname === '/') {
+      window.addEventListener('scroll', this.handleScrolling);
+    }
   }
 
   componentWillUnmount = () => {
-      window.removeEventListener('scroll', this.handleScrolling);
+    window.removeEventListener('scroll', this.handleScrolling);
+  }
+
+  handleEventListeners = () => {
+    window.removeEventListener('scroll', this.handleScrolling);
   }
 
   toggleHamburger = () => {
-    // toggle the active boolean in the state
-    this.setState(
-      {
-        active: !this.state.active
-      },
-      // after state has been updated,
-      () => {
-        // set the class in state for the navbar accordingly
-        this.state.active
-          ? this.setState({
-              navBarActiveClass: "is-active"
-            })
-          : this.setState({
-              navBarActiveClass: ""
-            });
-      }
-    );
+    if(window.location.pathname === '/become-a-member') {
+      return window.location.pathname = '/'
+    } else {
+      // toggle the active boolean in the state
+      this.setState(
+        {
+          active: !this.state.active
+        },
+        // after state has been updated,
+        () => {
+          // set the class in state for the navbar accordingly
+          this.state.active
+            ? this.setState({
+                navBarActiveClass: "is-active"
+              })
+            : this.setState({
+                navBarActiveClass: ""
+              });
+        }
+      );
+    }
   };
 
 
@@ -93,6 +103,10 @@ const Navbar = class extends React.Component {
       {
         id: '#shares',
         title: 'Community Shares'
+      },
+      {
+        id: '#faqs',
+        title: 'Common Q&As'
       },
       {
         id: '#gallery',
@@ -164,19 +178,21 @@ const Navbar = class extends React.Component {
                     <div className="navbar-item" onClick={(e) => this.updateTitle(e, '#shares')}>
                       Community Shares
                     </div>
-                    <div className="navbar-item" onClick={(e) => this.updateTitle(e, '#gallery')}>
-                      Bread Gallery
-                    </div>
+                    {/*
                     <div className="navbar-item" onClick={(e) => this.updateTitle(e, '#meet')}>
                       Meet The Baker
                     </div>
+                    */}
                     <div className="navbar-item" onClick={(e) => this.updateTitle(e, '#faqs')}>
                       Common Q&As
+                    </div>
+                    <div className="navbar-item" onClick={(e) => this.updateTitle(e, '#gallery')}>
+                      Bread Gallery
                     </div>
                   </div>
                 </div>
               </div>
-              <Link className="button is-secondary" to="/about">
+              <Link className="button is-secondary" to="/become-a-member" onClick={() => this.handleEventListeners()}>
                 <span className="hide-for-mobile">Become A Member</span>
                 <span className="show-for-mobile-only">Join</span>
               </Link>
