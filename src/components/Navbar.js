@@ -1,15 +1,26 @@
 import React from "react";
 import { Link } from "gatsby";
-import github from "../img/github-icon.svg";
 import logo from "../img/logo.svg";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleDown } from '@fortawesome/pro-light-svg-icons'
 
 const Navbar = class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       active: false,
-      navBarActiveClass: ""
+      navBarActiveClass: "",
+      dropdownTitle: "About Koselig",
     };
+  }
+
+  componentDidMount = () => {
+    window.addEventListener('scroll', this.handleScrolling);
+  }
+
+  componentWillUnmount = () => {
+      window.removeEventListener('scroll', this.handleScrolling);
   }
 
   toggleHamburger = () => {
@@ -32,61 +43,143 @@ const Navbar = class extends React.Component {
     );
   };
 
+
+  updateTitle = (e, id) => {
+    console.log(e.currentTarget);
+    this.setState(
+      {
+        dropdownTitle: e.currentTarget.textContent,
+        active: !this.state.active
+      },
+      () => {
+        this.state.active
+          ? this.setState({
+              navBarActiveClass: "is-active"
+            })
+          : this.setState({
+              navBarActiveClass: ""
+            });
+      }
+    );
+    let parent = document.querySelector(".dropdown-content").children;
+    for (let child of parent) {
+      if(child.classList.contains("is-active")) {
+        child.classList.remove("is-active");
+      }
+    };
+    e.currentTarget.classList.add("is-active");
+
+    this.handleScroll(id);
+  };
+
+  handleScroll = (id) => {
+    document.querySelector(id).scrollIntoView({
+      behavior: 'smooth',
+      block: "start",
+      inline: "nearest",
+     });
+  }
+
+  handleScrolling = () => {
+    const ids = [
+      {
+        id: '#about',
+        title: 'About Koselig'
+      },
+      {
+        id: '#membership',
+        title: 'Membership'
+      },
+      {
+        id: '#shares',
+        title: 'Community Shares'
+      },
+      {
+        id: '#gallery',
+        title: 'Bread Gallery'
+      }
+    ];
+    ids.forEach((id) => {
+      let menuHeight = 73;
+      let el = document.querySelector(id.id)
+      let elHeight = el.getBoundingClientRect().height;
+      let elTop = el.getBoundingClientRect().top;
+      let elPosition = elTop - menuHeight;
+
+      if(elPosition <= menuHeight + 1 && elPosition >= -menuHeight - 1) {
+        this.setState(
+          {
+            dropdownTitle: id.title,
+          }
+        );
+        let parent = document.querySelector(".dropdown-content").children;
+        for (let child of parent) {
+          if(child.classList.contains("is-active")) {
+            child.classList.remove("is-active");
+          }
+          if(child.textContent === id.title) {
+            child.classList.add("is-active");
+          }
+        };
+      }
+
+    });
+  }
+
   render() {
     return (
       <nav
-        className="navbar is-transparent"
+        className="navbar is-transparent is-fixed-top"
         role="navigation"
         aria-label="main-navigation"
       >
         <div className="container">
           <div className="navbar-brand">
-            <Link to="/" className="navbar-item" title="Logo">
-              <img src={logo} alt="Kaldi" style={{ width: "88px" }} />
+            <Link to="/" className="column navbar-item" title="Logo">
+              <img src={logo} alt="Koselig Bread" />
             </Link>
-            {/* Hamburger menu */}
-            <div
-              className={`navbar-burger burger ${this.state.navBarActiveClass}`}
-              data-target="navMenu"
-              onClick={() => this.toggleHamburger()}
-            >
-              <span />
-              <span />
-              <span />
-            </div>
-          </div>
-          <div
-            id="navMenu"
-            className={`navbar-menu ${this.state.navBarActiveClass}`}
-          >
-            <div className="navbar-start has-text-centered">
-              <Link className="navbar-item" to="/about">
-                About
+            <div className="navbar-menu column is-narrow has-text-centered">
+              <div className={`dropdown ${this.state.navBarActiveClass}`} >
+                <div className="dropdown-trigger">
+                  <button
+                    className="button"
+                    onClick={() => this.toggleHamburger()}
+                    aria-haspopup="true"
+                    aria-controls="dropdown-menu"
+                  >
+                    <span className="dropdown-title">{this.state.dropdownTitle}</span>
+                    <span className="icon is-small">
+                      <FontAwesomeIcon icon={faAngleDown} />
+                    </span>
+                  </button>
+                </div>
+                <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                  <div className="dropdown-content">
+                    <div className="navbar-item" onClick={(e) => this.updateTitle(e, '#about')}>
+                      About Koselig
+                    </div>
+                    <div className="navbar-item" onClick={(e) => this.updateTitle(e, '#membership')}>
+                      Membership
+                    </div>
+                    <div className="navbar-item" onClick={(e) => this.updateTitle(e, '#shares')}>
+                      Community Shares
+                    </div>
+                    <div className="navbar-item" onClick={(e) => this.updateTitle(e, '#gallery')}>
+                      Bread Gallery
+                    </div>
+                    <div className="navbar-item" onClick={(e) => this.updateTitle(e, '#meet')}>
+                      Meet The Baker
+                    </div>
+                    <div className="navbar-item" onClick={(e) => this.updateTitle(e, '#faqs')}>
+                      Common Q&As
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <Link className="button is-secondary" to="/about">
+                <span className="hide-for-mobile">Become A Member</span>
+                <span className="show-for-mobile-only">Join</span>
               </Link>
-              <Link className="navbar-item" to="/products">
-                Products
-              </Link>
-              <Link className="navbar-item" to="/blog">
-                Blog
-              </Link>
-              <Link className="navbar-item" to="/contact">
-                Contact
-              </Link>
-              <Link className="navbar-item" to="/contact/examples">
-                Form Examples
-              </Link>
-            </div>
-            <div className="navbar-end has-text-centered">
-              <a
-                className="navbar-item"
-                href="https://github.com/AustinGreen/gatsby-netlify-cms-boilerplate"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="icon">
-                  <img src={github} alt="Github" />
-                </span>
-              </a>
             </div>
           </div>
         </div>

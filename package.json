@@ -1,9 +1,12 @@
 {
-  "name": "gatsby-starter-netlify-cms",
-  "description": "Example Gatsby, and Netlify CMS project",
-  "version": "1.1.3",
-  "author": "Austin Green",
+  "name": "koselig-bread",
+  "description": "Koselig Bread Website",
+  "version": "1.0.0",
+  "author": "Kevin Utoft",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/pro-light-svg-icons": "^5.8.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "bulma": "^0.7.0",
     "gatsby": "^2.1.34",
     "gatsby-image": "^2.0.23",
