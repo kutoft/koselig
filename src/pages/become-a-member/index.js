@@ -1,6 +1,8 @@
-import React from 'react'
-import { navigate } from 'gatsby-link'
-import Layout from '../../components/Layout'
+import React from 'react';
+import { navigate } from 'gatsby-link';
+import Layout from '../../components/Layout';
+
+import logoPattern from "../../img/logo-pattern.png";
 
 function encode(data) {
   return Object.keys(data)
@@ -12,6 +14,14 @@ export default class Index extends React.Component {
   constructor(props) {
     super(props)
     this.state = { isValidated: false }
+  }
+
+  componentDidMount = () => {
+    document.querySelectorAll('select').forEach(item => {
+      this.setState({
+        [item.name]: item.value,
+      });
+    })
   }
 
   handleChange = e => {
@@ -36,151 +46,186 @@ export default class Index extends React.Component {
   render() {
     return (
       <Layout>
-        <section className="section">
-          <div className="container">
-            <div className="content">
-              <h1>Become A Member</h1>
-              <form
-                name="MemberSignUp"
-                method="post"
-                action="/become-a-member/thanks/"
-                data-netlify="true"
-                data-netlify-honeypot="bot-field"
-                onSubmit={this.handleSubmit}
-              >
-                {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
-                <input type="hidden" name="form-name" value="contact" />
-                <div hidden>
-                  <label>
-                    Don’t fill this out:{' '}
-                    <input name="bot-field" onChange={this.handleChange} />
-                  </label>
-                </div>
-                <div className="field">
-                  <label className="label" htmlFor={'name'}>
-                    Your name
-                  </label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      type={'text'}
-                      name={'name'}
-                      onChange={this.handleChange}
-                      id={'name'}
-                      required={true}
-                    />
+        <div
+          className="hero full-width-image margin-top-0 is-relative is-medium"
+          style={{
+            backgroundImage: `url(${logoPattern})`,
+            backgroundPosition: `top left`,
+            backgroundSize: 100,
+            backgroundAttachment: `fixed`,
+          }}
+        >
+          <div
+            className="hero-body"
+            style={{
+              display: 'flex',
+              height: '150px',
+              lineHeight: '1',
+              justifyContent: 'space-around',
+              alignItems: 'left',
+              flexDirection: 'column',
+            }}
+          >
+            <h1
+              className="is-size-3-mobile is-size-2-tablet has-text-weight-light"
+              style={{
+                color: 'white',
+                textAlign: 'center',
+                textTransform: 'uppercase',
+              }}
+            >
+              <span className="is-size-5-mobile is-size-4-tablet has-text-weight-bold is-block">Become A</span>
+              Member
+            </h1>
+          </div>
+          <div className="has-gradient-primary is-overlay has-transparentcy-75"></div>
+        </div>
+        <section className="section is-medium">
+          <div className="columns">
+            <div className="column is-8-desktop is-offset-2-desktop">
+              <div className="content">
+                <p className="subtitle">
+                  Fill out the form below to submit a pickup request.
+                </p>
+                <form
+                  name="MemberSignUp"
+                  method="post"
+                  action="/become-a-member/thanks/"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                  onSubmit={this.handleSubmit}
+                >
+                  {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+                  <input type="hidden" name="form-name" value="contact" />
+                  <div hidden>
+                    <label>
+                      Don’t fill this out:{' '}
+                      <input name="bot-field" onChange={this.handleChange} />
+                    </label>
                   </div>
-                </div>
-                <div className="field">
-                  <label className="label" htmlFor={'email'}>
-                    Email
-                  </label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      type={'email'}
-                      name={'email'}
-                      onChange={this.handleChange}
-                      id={'email'}
-                      required={true}
-                    />
+                  <div className="field">
+                    <label className="label" htmlFor={'name'}>
+                      Your name
+                    </label>
+                    <div className="control">
+                      <input
+                        className="input"
+                        type={'text'}
+                        name={'name'}
+                        onChange={this.handleChange}
+                        id={'name'}
+                        required={true}
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="field">
-                  <label className="label" htmlFor={'email'}>
-                    Select Your Share Size
-                  </label>
-                  <div className="control">
-                    <select
-                      className="input"
-                      type={'select'}
-                      name={'shareSize'}
-                      onChange={this.handleChange}
-                      id={'shareSize'}
-                      required={true}
-                    >
-                      <option value="" selected disabled hidden>Select</option>
-                      <option value="RestEasy">Rest Easy</option>
-                      <option value="ProofPerfect">Proof Perfect</option>
-                      <option value="KneadMore">Knead More</option>
-                      <option value="TestRun">Test Run</option>
-                    </select>
+                  <div className="field">
+                    <label className="label" htmlFor={'email'}>
+                      Email
+                    </label>
+                    <div className="control">
+                      <input
+                        className="input"
+                        type={'email'}
+                        name={'email'}
+                        onChange={this.handleChange}
+                        id={'email'}
+                        required={true}
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="field">
-                  <label className="label" htmlFor={'email'}>
-                    Select Your Pickup Frequency
-                  </label>
-                  <div className="control">
-                    <select
-                      className="input"
-                      type={'select'}
-                      name={'pickupFrequency'}
-                      onChange={this.handleChange}
-                      id={'pickupFrequency'}
-                      required={true}
-                    >
-                      <option value="" selected disabled hidden>Select</option>
-                      <option value="OnePerMonth">One Per Month</option>
-                      <option value="TwoPerMonth">Two Per Month</option>
-                      <option value="ThreePerMonth">Three Per Month</option>
-                      <option value="FourPerMonth">Four Per Month</option>
-                    </select>
+                  <div className="field">
+                    <label className="label" htmlFor={'shareSize'}>
+                      Select Your Share Size
+                    </label>
+                    <div className="control select is-fullwidth">
+                      <select defaultValue={'RestEasy'}
+                        className="input"
+                        type={'select'}
+                        name={'shareSize'}
+                        onChange={this.handleChange}
+                        id={'shareSize'}
+                        required={true}
+                      >
+                        <option value="RestEasy">Rest Easy</option>
+                        <option value="ProofPerfect">Proof Perfect</option>
+                        <option value="KneadMore">Knead More</option>
+                        <option value="TestRun">Test Run</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div className="field">
-                  <label className="label" htmlFor={'email'}>
-                    Select Your Pickup Frequency
-                  </label>
-                  <div className="control">
-                    <select
-                      className="input"
-                      type={'select'}
-                      name={'pickupLocation'}
-                      onChange={this.handleChange}
-                      id={'pickupLocation'}
-                      required={true}
-                    >
-                      <option value="" selected disabled hidden>Select</option> 
-                      <option value="StAnthonyChurch">Saint Anthony Park Lurtheran Church</option>
-                    </select>
+                  <div className="field">
+                    <label className="label" htmlFor={'pickupFrequency'}>
+                      Select Your Pickup Frequency
+                    </label>
+                    <div className="control select is-fullwidth">
+                      <select defaultValue={'OnePerMonth'}
+                        className="input"
+                        type={'select'}
+                        name={'pickupFrequency'}
+                        onChange={this.handleChange}
+                        id={'pickupFrequency'}
+                        required={true}
+                      >
+                        <option value="OnePerMonth">One Per Month</option>
+                        <option value="TwoPerMonth">Two Per Month</option>
+                        <option value="ThreePerMonth">Three Per Month</option>
+                        <option value="FourPerMonth">Four Per Month</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div className="field">
-                  <label className="label" htmlFor={'email'}>
-                    Select Your Start Date
-                  </label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      type={'date'}
-                      name={'startDate'}
-                      onChange={this.handleChange}
-                      id={'startDate'}
-                      required={true}
-                    />
+                  <div className="field">
+                    <label className="label" htmlFor={'pickupLocation'}>
+                      Select Your Pickup Location
+                    </label>
+                    <div className="control select is-fullwidth">
+                      <select defaultValue={'StAnthonyChurch'}
+                        className="input"
+                        type={'select'}
+                        name={'pickupLocation'}
+                        onChange={this.handleChange}
+                        id={'pickupLocation'}
+                        required={true}
+                      >
+                        <option value="StAnthonyChurch">Saint Anthony Park Lurtheran Church</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div className="field">
-                  <label className="label" htmlFor={'message'}>
-                    Message
-                  </label>
-                  <div className="control">
-                    <textarea
-                      className="textarea"
-                      name={'message'}
-                      onChange={this.handleChange}
-                      id={'message'}
-                      required={true}
-                    />
+                  <div className="field">
+                    <label className="label" htmlFor={'startDate'}>
+                      Select Your Start Date
+                    </label>
+                    <div className="control">
+                      <input
+                        className="input"
+                        type={'date'}
+                        name={'startDate'}
+                        onChange={this.handleChange}
+                        id={'startDate'}
+                        required={true}
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="field">
-                  <button className="button is-link" type="submit">
-                    Send
-                  </button>
-                </div>
-              </form>
+                  <div className="field">
+                    <label className="label" htmlFor={'notes'}>
+                      Notes
+                    </label>
+                    <div className="control">
+                      <textarea
+                        className="textarea"
+                        name={'notes'}
+                        onChange={this.handleChange}
+                        id={'notes'}
+                        required={true}
+                      />
+                    </div>
+                  </div>
+                  <div className="field">
+                    <button className="button is-secondary" type="submit">
+                      Send Request
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </section>

@@ -22,6 +22,9 @@ import bread6 from "../img/bread-6.jpg";
 import bread7 from "../img/bread-7.jpg";
 import bread8 from "../img/bread-8.jpg";
 
+import bread10 from "../img/bread-10.jpg";
+
+
 export const IndexPageTemplate = ({
   image,
   title,
@@ -36,9 +39,7 @@ export const IndexPageTemplate = ({
     <div
       className="hero full-width-image margin-top-0 is-relative is-large"
       style={{
-        backgroundImage: `url(${
-          !!image.childImageSharp ? image.childImageSharp.fluid.src : image
-        })`,
+        backgroundImage: `url(${bread10})`,
         backgroundPosition: `top left`,
         backgroundAttachment: `fixed`,
       }}

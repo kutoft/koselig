@@ -117,6 +117,12 @@ $black: $koselig-red-black
       background-image: none
       top: 1px
 
+.select:not(.is-multiple):not(.is-loading)
+  &::after
+    border-color: $koselig-red-dark-2
+  &:hover::after
+    border-color: $koselig-red-black
+
 .badge
   display: inline-block
   min-width: 2.1em
