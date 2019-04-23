@@ -15,8 +15,18 @@ export default class Index extends React.Component {
     super(props)
     this.state = {
       isValidated: false,
-      shareSelected: props.location.state.shareSelected
+      shareSelected: 'RestEasy',
     }
+  }
+
+
+  static getDerivedStateFromProps = (props, state) => {
+    if (props.location.state.shareSelected !== state.shareSelected) {
+      return {
+        shareSelected: props.location.state.shareSelected
+      }
+    }
+    return null;
   }
 
   componentDidMount = () => {
@@ -26,6 +36,7 @@ export default class Index extends React.Component {
       });
     })
   }
+
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value })
