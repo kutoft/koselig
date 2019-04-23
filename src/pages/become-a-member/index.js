@@ -17,6 +17,7 @@ export default class Index extends React.Component {
       isValidated: false,
       shareSelected: 'RestEasy',
     }
+    this.props.location.state = this.props.location.state === undefined ? {shareSelected: ''} : this.props.location.state;
   }
 
 
