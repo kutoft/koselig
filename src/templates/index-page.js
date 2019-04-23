@@ -64,7 +64,7 @@ export const IndexPageTemplate = ({
           }}
         >
           <span className="is-size-5-mobile is-size-4-tablet has-text-weight-bold is-block">Baked With</span>
-          <HeroTitle titles={['Community', 'Tradition', 'Love', 'Family', 'Warmth', 'Happiness', 'Community']}/>
+          <HeroTitle titles={['Community', 'Tradition', 'Love', 'Family', 'Warmth', 'Happiness']}/>
         </h1>
       </div>
       <div className="has-gradient-primary is-overlay has-transparentcy-75"></div>
@@ -208,7 +208,7 @@ export const IndexPageTemplate = ({
                         <li className="share-detail"><span className="share-detail-left"><FontAwesomeIcon icon={faStar} /></span> Perfect For Families</li>
                       </ul>
                       <p className="share-price"><span className="share-price-pre">$</span>60 <span className="share-price-share">/ Share</span></p>
-                      <Link className="button is-secondary is-fullwidth" to="/#">Select Share</Link>
+                      <Link className="button is-secondary is-fullwidth" to="/become-a-member" state={{ shareSelected: 'RestEasy' }}>Select Share</Link>
                     </div>
                     <div className="has-gradient-light is-overlay"></div>
                   </div>
@@ -228,7 +228,7 @@ export const IndexPageTemplate = ({
                         <li className="share-detail"><span className="share-detail-left"><FontAwesomeIcon icon={faStar} /></span> Perfect For Families</li>
                       </ul>
                       <p className="share-price"><span className="share-price-pre">$</span>80 <span className="share-price-share">/ Share</span></p>
-                      <Link className="button is-secondary is-fullwidth" to="/#">Select Share</Link>
+                      <Link className="button is-secondary is-fullwidth" to="/become-a-member" state={{ shareSelected: 'ProofPerfect' }}>Select Share</Link>
                     </div>
                     <div className="has-gradient-primary is-overlay"></div>
                   </div>
@@ -248,7 +248,7 @@ export const IndexPageTemplate = ({
                         <li className="share-detail"><span className="share-detail-left"><FontAwesomeIcon icon={faStar} /></span> Perfect For Families</li>
                       </ul>
                       <p className="share-price"><span className="share-price-pre">$</span>120 <span className="share-price-share">/ Share</span></p>
-                      <Link className="button is-secondary is-fullwidth" to="/#">Select Share</Link>
+                      <Link className="button is-secondary is-fullwidth" to="/become-a-member" state={{ shareSelected: 'KneadMore' }}>Select Share</Link>
                     </div>
                     <div className="has-gradient-light is-overlay"></div>
                   </div>
@@ -259,6 +259,7 @@ export const IndexPageTemplate = ({
         </div>
       </div>
     </section>
+    {/*
     <section id="faqs">
       <div className="container">
         <div className="section is-medium">
@@ -269,32 +270,33 @@ export const IndexPageTemplate = ({
                   question="Hello World"
                   answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem."
                   ></Faq>
-                  <Faq
-                    question="Hello World"
-                    answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem."
-                  ></Faq>
-                  <Faq
-                    question="Hello World"
-                    answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem."
-                  ></Faq>
-                  <Faq
-                    question="Hello World"
-                    answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem."
-                  ></Faq>
-                  <Faq
-                    question="Hello World"
-                    answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem."
-                  ></Faq>
-                  <Faq
-                    question="Hello World"
-                    answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem."
-                  ></Faq>
+                <Faq
+                  question="Hello World"
+                  answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem."
+                ></Faq>
+                <Faq
+                  question="Hello World"
+                  answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem."
+                ></Faq>
+                <Faq
+                  question="Hello World"
+                  answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem."
+                ></Faq>
+                <Faq
+                  question="Hello World"
+                  answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem."
+                ></Faq>
+                <Faq
+                  question="Hello World"
+                  answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem."
+                ></Faq>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+    */}
     <section id="gallery">
       <div className="tile is-ancestor">
         <div className="tile">

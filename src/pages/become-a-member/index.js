@@ -13,7 +13,10 @@ function encode(data) {
 export default class Index extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { isValidated: false }
+    this.state = {
+      isValidated: false,
+      shareSelected: props.location.state.shareSelected
+    }
   }
 
   componentDidMount = () => {
@@ -138,7 +141,7 @@ export default class Index extends React.Component {
                       Select Your Share Size
                     </label>
                     <div className="control select is-fullwidth">
-                      <select defaultValue={'RestEasy'}
+                      <select defaultValue={this.state.shareSelected}
                         className="input"
                         type={'select'}
                         name={'shareSize'}

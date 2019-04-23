@@ -105,10 +105,6 @@ const Navbar = class extends React.Component {
         title: 'Community Shares'
       },
       {
-        id: '#faqs',
-        title: 'Common Q&As'
-      },
-      {
         id: '#gallery',
         title: 'Bread Gallery'
       }
@@ -183,9 +179,11 @@ const Navbar = class extends React.Component {
                       Meet The Baker
                     </div>
                     */}
+                    {/*
                     <div className="navbar-item" onClick={(e) => this.updateTitle(e, '#faqs')}>
                       Common Q&As
                     </div>
+                    */}
                     <div className="navbar-item" onClick={(e) => this.updateTitle(e, '#gallery')}>
                       Bread Gallery
                     </div>

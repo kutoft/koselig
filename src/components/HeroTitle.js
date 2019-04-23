@@ -5,22 +5,32 @@ const HeroTitle = class extends React.Component {
     super(props);
     this.state = {
       titles: props.titles,
-      title: props.titles[0]
+      title: props.titles[0],
+      counter: 1,
     };
   }
 
   componentDidMount = () => {
-    for (let i = 0; i < this.state.titles.length; i++) {
-      this.setDelay(i);
-    }
+    this.createTimer(this.state.counter);
   }
 
-  setDelay = (i) => {
-    setTimeout(function(){
+  componentWillUnmount = () => {
+    clearTimeout(this.timer);
+  }
+
+  createTimer = (counter) => {
+    if (counter === this.state.titles.length) {
+      counter = 0;
+    }
+    this.timer = setTimeout(() => {
       this.setState({
-        title: this.state.titles[i]
+        title: this.state.titles[counter],
+        counter: counter + 1,
+      }, () => {
+        clearTimeout(this.timer);
+        this.createTimer(this.state.counter);
       });
-    }.bind(this), i * 5000);
+    }, 5000);
   }
 
   render() {
